@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -35,8 +35,12 @@
       border-radius: 10px;
       margin-top: 10px;
     }
-    canvas {
+    canvas#bg {
       display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
     }
     .live-indicator {
       display: inline-block;
@@ -56,6 +60,7 @@
   </style>
 </head>
 <body>
+  <canvas id="bg"></canvas>
   <div id="hud">
     <h1>STERNE FM 🚀</h1>
     <p>Transmisja z pokładu statku – mijamy Marsa, komety, czarne dziury i galaktyki...</p>
@@ -69,9 +74,8 @@
   <script>
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg') });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
 
     const sunLight = new THREE.PointLight(0xffcc66, 2, 200);
     sunLight.position.set(0, 0, 50);
@@ -102,24 +106,18 @@
       scene.add(obj);
       objects.push(obj);
     }
-// Galaktyka spiralna
-createObject('https://upload.wikimedia.org/wikipedia/commons/6/6f/NGC_1300_Hubble.jpg', 5, 20, -10, -60, 0.05);
 
-// Czarna dziura
-createObject('https://upload.wikimedia.org/wikipedia/commons/5/5f/Black_hole_render.jpg', 3, -25, 0, -50, 0.02);
-
-// Mgławica
-createObject('https://upload.wikimedia.org/wikipedia/commons/0/00/Eagle_nebula_pillars.jpg', 4, 15, 10, -70, 0.03);
-
-// Pulsar
-createObject('https://upload.wikimedia.org/wikipedia/commons/0/0e/Pulsar_art.jpg', 1.5, -10, -5, -80, 0.04);
     // Planety i komety
+    createObject('https://threejsfundamentals.org/threejs/resources/images/planets/mars.jpg', 2, 10, 0, -60, 0.2);
+    createObject('https://threejsfundamentals.org/threejs/resources/images/planets/jupiter.jpg', 3, -15, 5, -80, 0.15);
+    createObject('https://threejsfundamentals.org/threejs/resources/images/planets/earth.jpg', 1.5, 5, -3, -100, 0.1);
+    createObject('https://threejsfundamentals.org/threejs/resources/images/comet.jpg', 1, -8, 2, -120, 0.25);
 
     // Obiekty galaktyczne
-    createObject('https://upload.wikimedia.org/wikipedia/commons/6/6f/NGC_1300_Hubble.jpg', 5, 20, -10, -180, 0.05); // Galaktyka spiralna
-    createObject('https://upload.wikimedia.org/wikipedia/commons/5/5f/Black_hole_render.jpg', 3, -25, 0, -150, 0.02); // Czarna dziura
-    createObject('https://upload.wikimedia.org/wikipedia/commons/0/00/Eagle_nebula_pillars.jpg', 4, 15, 10, -170, 0.03); // Mgławica
-    createObject('https://upload.wikimedia.org/wikipedia/commons/0/0e/Pulsar_art.jpg', 1.5, -10, -5, -160, 0.04); // Pulsar
+    createObject('https://upload.wikimedia.org/wikipedia/commons/6/6f/NGC_1300_Hubble.jpg', 5, 20, -10, -90, 0.05); // Galaktyka spiralna
+    createObject('https://upload.wikimedia.org/wikipedia/commons/5/5f/Black_hole_render.jpg', 3, -25, 0, -70, 0.02); // Czarna dziura
+    createObject('https://upload.wikimedia.org/wikipedia/commons/0/00/Eagle_nebula_pillars.jpg', 4, 15, 10, -100, 0.03); // Mgławica
+    createObject('https://upload.wikimedia.org/wikipedia/commons/0/0e/Pulsar_art.jpg', 1.5, -10, -5, -110, 0.04); // Pulsar
 
     camera.position.z = 5;
 
@@ -128,7 +126,7 @@ createObject('https://upload.wikimedia.org/wikipedia/commons/0/0e/Pulsar_art.jpg
       objects.forEach(obj => {
         obj.position.z += obj.userData.speed;
         obj.rotation.y += 0.01;
-        if (obj.position.z > 10) obj.position.z = -200;
+        if (obj.position.z > 10) obj.position.z = -150;
       });
       renderer.render(scene, camera);
     }
@@ -142,5 +140,5 @@ createObject('https://upload.wikimedia.org/wikipedia/commons/0/0e/Pulsar_art.jpg
     });
   </script>
 </body>
-</html>  
+</html> 
     
