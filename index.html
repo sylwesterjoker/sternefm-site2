@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <title>STERNE FM – Kokpit Galaktyczny</title>
+  <title>STERNE FM – Galaktyczny Kokpit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Audiowide&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
@@ -58,7 +58,7 @@
 <body>
   <div id="hud">
     <h1>STERNE FM 🚀</h1>
-    <p>Transmisja z pokładu statku – mijamy Marsa, komety i gwiazdy...</p>
+    <p>Transmisja z pokładu statku – mijamy Marsa, komety, czarne dziury i galaktyki...</p>
     <audio controls autoplay>
       <source src="https://s41.myradiostream.com:39624/stream" type="audio/mpeg">
       Twoja przeglądarka nie obsługuje odtwarzacza audio.
@@ -73,12 +73,10 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Blask słońca
     const sunLight = new THREE.PointLight(0xffcc66, 2, 200);
     sunLight.position.set(0, 0, 50);
     scene.add(sunLight);
 
-    // Gwiazdy w tle
     const starGeo = new THREE.SphereGeometry(0.1, 24, 24);
     const starMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
     for (let i = 0; i < 300; i++) {
@@ -90,18 +88,7 @@
       );
       scene.add(star);
     }
-// Galaktyka spiralna
-createObject('https://upload.wikimedia.org/wikipedia/commons/6/6f/NGC_1300_Hubble.jpg', 5, 20, -10, -180, 0.05);
 
-// Czarna dziura
-createObject('https://upload.wikimedia.org/wikipedia/commons/5/5f/Black_hole_render.jpg', 3, -25, 0, -150, 0.02);
-
-// Mgławica
-createObject('https://upload.wikimedia.org/wikipedia/commons/0/00/Eagle_nebula_pillars.jpg', 4, 15, 10, -170, 0.03);
-
-// Pulsar
-createObject('https://upload.wikimedia.org/wikipedia/commons/0/0e/Pulsar_art.jpg', 1.5, -10, -5, -160, 0.04);
-    // Planety i komety
     const loader = new THREE.TextureLoader();
     const objects = [];
 
@@ -116,10 +103,17 @@ createObject('https://upload.wikimedia.org/wikipedia/commons/0/0e/Pulsar_art.jpg
       objects.push(obj);
     }
 
+    // Planety i komety
     createObject('https://threejsfundamentals.org/threejs/resources/images/planets/mars.jpg', 2, 10, 0, -100, 0.2);
     createObject('https://threejsfundamentals.org/threejs/resources/images/planets/jupiter.jpg', 3, -15, 5, -120, 0.15);
     createObject('https://threejsfundamentals.org/threejs/resources/images/planets/earth.jpg', 1.5, 5, -3, -140, 0.1);
     createObject('https://threejsfundamentals.org/threejs/resources/images/comet.jpg', 1, -8, 2, -160, 0.25);
+
+    // Obiekty galaktyczne
+    createObject('https://upload.wikimedia.org/wikipedia/commons/6/6f/NGC_1300_Hubble.jpg', 5, 20, -10, -180, 0.05); // Galaktyka spiralna
+    createObject('https://upload.wikimedia.org/wikipedia/commons/5/5f/Black_hole_render.jpg', 3, -25, 0, -150, 0.02); // Czarna dziura
+    createObject('https://upload.wikimedia.org/wikipedia/commons/0/00/Eagle_nebula_pillars.jpg', 4, 15, 10, -170, 0.03); // Mgławica
+    createObject('https://upload.wikimedia.org/wikipedia/commons/0/0e/Pulsar_art.jpg', 1.5, -10, -5, -160, 0.04); // Pulsar
 
     camera.position.z = 5;
 
@@ -142,5 +136,5 @@ createObject('https://upload.wikimedia.org/wikipedia/commons/0/0e/Pulsar_art.jpg
     });
   </script>
 </body>
-</html>
+</html>  
     
